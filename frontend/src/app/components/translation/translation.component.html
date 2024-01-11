@@ -1,0 +1,19 @@
+<div>
+  <label for="sourceLanguage">Source Language (English)</label>
+  <input id="sourceLanguage" [(ngModel)]="sourceLanguage" readonly="true" value="en" />
+
+  <label for="targetLanguage">Target Language</label>
+  <select id="targetLanguage" [(ngModel)]="targetLanguage">
+    <option *ngFor="let lang of supportedLanguages" [value]="lang.code">{{ lang.name }}</option>
+  </select>
+
+  <label for="textToTranslate">Text to Translate</label>
+  <textarea id="textToTranslate" [(ngModel)]="textToTranslate"></textarea>
+
+  <button (click)="translate()">Translate</button>
+
+  <div *ngIf="translationResult">
+    <h4>Translation Result</h4>
+    <p>{{ translationResult }}</p>
+  </div>
+</div>
