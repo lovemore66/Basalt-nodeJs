@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "a39263c4-d69f-48db-81b8-fe17fb8d7d97",
 		"name": "Basalt Rapid API",
-		"description": "# Get started here\n\nThis template guides you through the process of setting up an integration test to ensure that all individual components of an API function together seamlessly.  \n\nThe API under test in this collection includes two endpoints for retrieving aggregated data and translating text\n\n- POST /aggregated-data\n- GET /translate\n    \n\nSet your RapidAPI keys: APIs Used  \n[https://rapidapi.com/api-sports/api/api-basketball<br>](https://rapidapi.com/api-sports/api/api-basketball)[https://rapidapi.com/dickyagustin/api/text-translator2](https://rapidapi.com/dickyagustin/api/text-translator2)[<br>](https://rapidapi.com/api-sports/api/api-basketball)  \nand replace placeholder values with your actual RapidAPI keys  \n  \n\nBy setting up requests in the order of the operation, we can test the flow of data to and from the endpoints and ensure they work together as expected. We also verify that the data persists between requests on the back end.\n\n## **How to use this template**\n\n**Step 1:** Check out the requests' documentation to learn more about -\n\n- what each request is meant to do.\n- the tests we've added against each one.\n    \n\n**Step 2:** Run this collection by clicking on \"Run\".\n\n<img src=\"https://content.pstmn.io/84019b0f-69c8-4c5f-98b9-2c90a6f9a0b1/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" width=\"266\" height=\"103\">\n\n**Step 3:** To customize this template, replace the request URLs with your API endpoints and add or edit the tests if needed.",
+		"description": "# Get started here\n\nThis template guides you through the process of setting up an integration test to ensure that all individual components of an API function together seamlessly.\n\nThe API under test in this collection includes three endpoints for retrieving aggregated data, translating text and transactions\n\n- POST /aggregated-data\n- GET /translate\n    \n- GET /transactions\n    \n\nSet your RapidAPI keys: APIs Used  \n[https://rapidapi.com/api-sports/api/api-basketball<br>](https://rapidapi.com/api-sports/api/api-basketball)[https://rapidapi.com/dickyagustin/api/text-translator2](https://rapidapi.com/dickyagustin/api/text-translator2)[](https://rapidapi.com/api-sports/api/api-basketball)  \nand replace placeholder values with your actual RapidAPI keys\n\nBy setting up requests in the order of the operation, we can test the flow of data to and from the endpoints and ensure they work together as expected. We also verify that the data persists between requests on the back end.\n\n## **How to use this template**\n\n**Step 1:** Check out the requests' documentation to learn more about -\n\n- what each request is meant to do.\n- the tests we've added against each one.\n    \n\n**Step 2:** Run this collection by clicking on \"Run\".\n\n<img src=\"https://content.pstmn.io/84019b0f-69c8-4c5f-98b9-2c90a6f9a0b1/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" width=\"266\" height=\"103\">\n\n**Step 3:** To customize this template, replace the request URLs with your API endpoints and add or edit the tests if needed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29138635"
 	},
@@ -135,6 +135,23 @@
 					]
 				},
 				"description": "This request uses the saved `token` collection variable to access a secret 'name' stored against that token.\n\nIn this request, we used the `token` collection variable as a query param to fetch the name generated for that token. We have added a test to check that a name is correctly returned."
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/transactions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transactions"
+					]
+				}
 			},
 			"response": []
 		}

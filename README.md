@@ -27,7 +27,7 @@ This project seamlessly integrates data from two RapidAPI services and presents 
 
 3. Set your RapidAPI keys:
 
-    Edit `index.js` and replace placeholder values with your actual RapidAPI keys:
+    Edit `.env` and replace placeholder values with your actual RapidAPI keys:
 
     ```javascript
     // Define your RapidAPI keys here
@@ -52,6 +52,8 @@ This project seamlessly integrates data from two RapidAPI services and presents 
     - Translation:
 
       Use a tool like Postman to make a POST request to `http://localhost:3000/translate` with parameters `source_language`, `target_language`, and `text`.
+    - Transactions
+       Open your browser or use a tool like Postman to access `http://localhost:3000/transactions`.
 
 ## FRONT END (ANGULAR) SETUP ----------------------------------------------------------------
 
