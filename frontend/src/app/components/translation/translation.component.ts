@@ -15,6 +15,7 @@ export class TranslationComponent implements OnInit{
   supportedLanguages: any[] = [
     { code: 'id', name: 'Indonesian' },
   ];
+  loading: boolean = false;
 
   ngOnInit(): void {
     this.getAggregatedData()
@@ -23,12 +24,14 @@ export class TranslationComponent implements OnInit{
   constructor(private translationService: TranslationService, private teamsService: TeamsService) {}
 
   translate() {
+    this.loading = true;
     this.translationService
       .translateText(this.sourceLanguage, this.targetLanguage, this.textToTranslate)
       .subscribe(
         (result: any) => {
           this.translationResult = result.data.translatedText;
           console.log(this.translationResult)
+          this.loading = false;
         },
         (error) => {
           console.error('Translation error:', error);

@@ -12,8 +12,11 @@
 
   <button (click)="translate()">Translate</button>
 
-  <div *ngIf="translationResult">
+  <div *ngIf="translationResult  && !loading">
     <h4>Translation Result</h4>
     <p>{{ translationResult }}</p>
+  </div>
+  <div class="load" *ngIf="loading">
+    <div class="loader"></div>
   </div>
 </div>

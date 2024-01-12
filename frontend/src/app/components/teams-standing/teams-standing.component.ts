@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TeamsService } from '../../services/teams.service';
 
@@ -10,16 +9,21 @@ import { TeamsService } from '../../services/teams.service';
 export class TeamsStandingComponent implements OnInit {
   carName: string = '';
   result: any = {};
+  teamsStandings: any[] = [];
+  columnTitles: string[] = ['Club', 'League', 'Wins', 'Lose', 'Played', 'Points', 'Recent Form'];
+  loading: boolean = true;
 
-  constructor(private http: HttpClient, private teamsService: TeamsService) { }
+  constructor(private teamsService: TeamsService) { }
 
   ngOnInit(): void {
-    // this.getAggregatedData()
+    this.getAggregatedData()
   }
 
   getAggregatedData() {
     this.teamsService.getAggregatedInfo().subscribe( res => {
+      this.loading = false;
       console.log(res.teamStandings.response);
+      this.teamsStandings = res.teamStandings.response[0];
     })
   }
 

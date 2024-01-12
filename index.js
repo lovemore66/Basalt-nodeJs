@@ -61,12 +61,6 @@ app.post('/translate', async (req, res) => {
       }
     );
 
-
-     // Set cache control headers
-     res.setHeader('Cache-Control', 'no-store');
-     res.setHeader('Pragma', 'no-cache');
-
-     
     res.json(translationResponse.data);
   } catch (error) {
     console.error(error);

@@ -1,1 +1,54 @@
-<p>teams-standing works!</p>
+<div class="teams-standing-table" *ngIf="!loading">
+  <ng-container>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let title of columnTitles">
+            {{ title }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teamsStandings; let i = index">
+          <td id="logo">
+            <span>{{ i + 1 }}</span>
+            <div class="team-info">
+              <div>{{ team.team.name }}</div>
+              <img [src]="team.team.logo" alt="" />
+            </div>
+          </td>
+          <td>
+            {{ team.league.name }}
+          </td>
+          <td>
+            {{ team.games.win.total }}
+          </td>
+          <td>
+            {{ team.games.lose.total }}
+          </td>
+          <td>
+            {{ team.games.played }}
+          </td>
+          <td>
+            {{ team.points.for }}
+          </td>
+          <td>
+            <div class="letters">
+              <ng-container *ngFor="let letter of team.form.split('')">
+                <img src="../../../assets/icons/loss.svg" *ngIf="letter === 'L'" />
+                <img src="../../../assets/icons/win.svg" *ngIf="letter === 'W'" />
+                <img src="../../../assets/icons/droll.svg" *ngIf="letter === 'O'" />
+              </ng-container>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
+
+<div *ngIf="loading" class="loading">
+
+  <div class="loader"></div>
+
+</div>

@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "a39263c4-d69f-48db-81b8-fe17fb8d7d97",
+		"name": "Basalt Rapid API",
+		"description": "# Get started here\n\nThis template guides you through the process of setting up an integration test to ensure that all individual components of an API function together seamlessly.  \n\nThe API under test in this collection includes two endpoints for retrieving aggregated data and translating text\n\n- POST /aggregated-data\n- GET /translate\n    \n\nSet your RapidAPI keys: APIs Used  \n[https://rapidapi.com/api-sports/api/api-basketball<br>](https://rapidapi.com/api-sports/api/api-basketball)[https://rapidapi.com/dickyagustin/api/text-translator2](https://rapidapi.com/dickyagustin/api/text-translator2)[<br>](https://rapidapi.com/api-sports/api/api-basketball)  \nand replace placeholder values with your actual RapidAPI keys  \n  \n\nBy setting up requests in the order of the operation, we can test the flow of data to and from the endpoints and ensure they work together as expected. We also verify that the data persists between requests on the back end.\n\n## **How to use this template**\n\n**Step 1:** Check out the requests' documentation to learn more about -\n\n- what each request is meant to do.\n- the tests we've added against each one.\n    \n\n**Step 2:** Run this collection by clicking on \"Run\".\n\n<img src=\"https://content.pstmn.io/84019b0f-69c8-4c5f-98b9-2c90a6f9a0b1/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" width=\"266\" height=\"103\">\n\n**Step 3:** To customize this template, replace the request URLs with your API endpoints and add or edit the tests if needed.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29138635"
+	},
+	"item": [
+		{
+			"name": "translate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"An access token is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('token')",
+							"    pm.expect(pm.response.json().token).to.be.a('string')",
+							"    // Set the collection-scope \"token\" variable to the token received from the API",
+							"    // This lets us use it in other requests",
+							"    pm.collectionVariables.set('token', pm.response.json().token)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "X-RapidAPI-Key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RapidAPI-Host",
+						"value": "{{RapidAP-Translation-Host}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/translate?source_language=en&target_language=id&text=What is your name?",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"translate"
+					],
+					"query": [
+						{
+							"key": "source_language",
+							"value": "en"
+						},
+						{
+							"key": "target_language",
+							"value": "id"
+						},
+						{
+							"key": "text",
+							"value": "What is your name?"
+						}
+					]
+				},
+				"description": "This returns a `token` that you can use to retrieve information later on.\n\nWe have included a test to confirm if a token is returned. We have also added test scripts to copy the token to the `token` collection variable. This makes it easy for us to reuse this token in other requests in the collection."
+			},
+			"response": []
+		},
+		{
+			"name": "Aggregated-data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"A name is returned\", () => {",
+							"    pm.expect(pm.response.json()).to.have.property('name');",
+							"    pm.expect(pm.response.json().name).to.be.a('string');",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-RapidAPI-Key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "X-RapidAPI-Host",
+						"value": "{{RapidAPI-standing-Host}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/aggregated-data?league:=12&season=2019-2020",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"aggregated-data"
+					],
+					"query": [
+						{
+							"key": "league:",
+							"value": "12"
+						},
+						{
+							"key": "season",
+							"value": "2019-2020"
+						}
+					]
+				},
+				"description": "This request uses the saved `token` collection variable to access a secret 'name' stored against that token.\n\nIn this request, we used the `token` collection variable as a query param to fetch the name generated for that token. We have added a test to check that a name is correctly returned."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://postman-integration-testing.glitch.me/"
+		}
+	]
+}

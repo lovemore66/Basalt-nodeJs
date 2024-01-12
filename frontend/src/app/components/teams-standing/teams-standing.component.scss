@@ -1,0 +1,94 @@
+.teams-standing-table {
+border: 1px solid #f1f3f4;
+position: relative;
+background-color: rgb(149, 147, 147);
+// border: 1px solid #f93710;
+max-width: 60%;
+border-radius: 8px;
+margin: 0 auto;
+padding: 30px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    .letters {
+      display: flex;
+      gap: 6px;
+    }
+
+    th, td {
+      border-top: 1px solid #f1f3f4;
+      padding: 4px 15px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+
+    th {
+      background-color: #f1f3f4;
+      box-sizing: border-box;
+    }
+
+    tbody {
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+
+      #logo {
+        display: flex;
+        align-items: center;
+        min-width: 270px;
+
+        span {
+          margin-right: 15px;
+          font-weight: bold;
+        }
+      }
+
+      .team-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        img {
+          height: 25px;
+        }
+      }
+
+      td {
+        #logo {
+          span {
+            margin-right: 10px;
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh;
+  width: 100%;
+}
+
+// Loader
+.loader {
+  width: 40px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f93710;
+  --_m:
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
